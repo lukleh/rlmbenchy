@@ -1,0 +1,9 @@
+# Smoke run: RLM pipeline on check_adapter_matrix (checked-in deterministic task set).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# No external dependencies — tasks are bundled in the installed package.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "check_adapter_matrix"
+task_limit = 1

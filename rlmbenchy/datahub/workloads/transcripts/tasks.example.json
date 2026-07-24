@@ -1,0 +1,12 @@
+[
+  {
+    "id": "transcripts_smoke_first_1",
+    "query": "Smoke-test this workload over exactly one selected transcript.\nCall `list_transcripts` to discover the hash_id and segment_count.\nCall `segment_count`, then inspect 5 unique 1-based positions with `get_segment` (first, ~25%, ~50%, ~75%, last); if fewer than 5 segments exist, inspect all of them.\nIdentify the dominant topic of the transcript and return one short paragraph summarizing it.\nRespond in the same language as the transcript content.",
+    "data": {
+      "selector": {
+        "mode": "FILE_COUNT",
+        "value": 1
+      }
+    }
+  }
+]

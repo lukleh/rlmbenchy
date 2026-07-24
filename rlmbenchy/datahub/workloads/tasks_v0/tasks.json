@@ -1,0 +1,66 @@
+[
+  {
+    "id": "v0_reconcile_ledgers",
+    "task": "Reconcile balances from mixed ledger events. Start balance is 1250. Events: [{'id':'t1','type':'sale','amount':220.0},{'id':'t2','type':'refund','amount':35.5},{'id':'t3','type':'fee','amount':12.0},{'id':'t4','type':'sale','amount':99.9},{'id':'t5','type':'chargeback','amount':99.9},{'id':'t6','type':'sale','amount':145.1},{'id':'t7','type':'fee','amount':8.5},{'id':'t8','type':'refund','amount':20.0}]. Bank statement ending balance is 1539.0. Compute: ledger_ending_balance, discrepancy_vs_bank, and ids that likely cancel each other by equal absolute amount but opposite direction. Return compact JSON with keys ending_balance, discrepancy, cancel_pairs, unmatched_ids. Before SUBMIT, run at least two intermediate execution steps and print checkpoints."
+  },
+  {
+    "id": "v0_shortest_path_alt_routes",
+    "task": "Directed weighted graph edges: [('A','B',4),('A','C',2),('B','C',1),('B','D',5),('C','B',3),('C','D',8),('C','E',10),('D','E',2),('E','D',2),('D','F',6),('E','F',3)]. Compute shortest distance from A to F and how many distinct shortest paths achieve that distance. Return compact JSON with shortest_distance and shortest_path_count. Validate with two different approaches before SUBMIT (for example Dijkstra plus brute-force path enumeration with pruning)."
+  },
+  {
+    "id": "v0_shift_scheduler_constraints",
+    "task": "Build a feasible 5-day shift schedule with fairness checks. Agents: ['ana','ben','cy','dia','eli']. Days: Mon..Fri. Need exactly 2 people per day. Constraints: ana unavailable Tue; ben unavailable Thu; cy unavailable Mon; dia unavailable Wed; eli unavailable Fri. No one can work consecutive days. Aim for balanced load (difference between max and min assigned shifts <= 1). Return compact JSON with assignments_by_day and counts_by_agent. Show at least two intermediate checks before SUBMIT: feasibility check and fairness check."
+  },
+  {
+    "id": "v0_sessionization_30m",
+    "task": "Sessionize event stream with 30-minute inactivity timeout. Events (user,timestamp ISO): [('u1','2026-01-01T09:00:00'),('u1','2026-01-01T09:12:00'),('u2','2026-01-01T09:15:00'),('u1','2026-01-01T10:01:00'),('u2','2026-01-01T10:10:00'),('u2','2026-01-01T10:50:00'),('u1','2026-01-01T10:55:00'),('u1','2026-01-01T11:40:00')]. Compute number of sessions per user and average session length minutes per user. Return compact JSON with session_counts and avg_session_minutes rounded to 2 decimals. Use at least two execution steps before SUBMIT."
+  },
+  {
+    "id": "v0_csv_join_net_revenue",
+    "task": "Join and aggregate two CSV datasets. orders_csv='order_id,customer,amount\\no1,A,120.5\\no2,B,75.0\\no3,A,44.5\\no4,C,210.0\\no5,B,39.5'; refunds_csv='order_id,refund_amount\\no2,25.0\\no5,39.5\\no3,10.0'. Compute net revenue per customer = sum(order amounts) - sum(refunds tied to their orders). Return compact JSON with customers sorted by net descending then name ascending, each row having customer and net rounded to 2 decimals. Do an intermediate cross-check before SUBMIT."
+  },
+  {
+    "id": "v0_text_normalization_clusters",
+    "task": "Cluster near-duplicate text by strict canonicalization: lowercase, trim, collapse spaces, remove punctuation characters [.,!?;:'\"-]. Input lines: ['  Error: Disk Full!','error disk full','ERROR,   DISK FULL.','Timeout while connecting','timeout while connecting!','User   not found','user-not-found','User not found??','timeout while  connecting']. Return compact JSON with canonical_counts sorted by count desc then canonical asc, and top_canonical. Perform at least two code runs before SUBMIT (normalize preview + aggregate)."
+  },
+  {
+    "id": "v0_weighted_rank_tiebreak",
+    "task": "Rank contestants with weighted judges. Scores: {'alice':{'j1':8.2,'j2':8.9,'j3':8.4},'bob':{'j1':8.5,'j2':8.6,'j3':8.5},'cara':{'j1':8.1,'j2':9.2,'j3':8.3},'drew':{'j1':8.7,'j2':8.4,'j3':8.8}}. Weights: {'j1':0.35,'j2':0.40,'j3':0.25}. Rank by weighted score desc; tiebreak by higher median raw score, then name asc. Return compact JSON with ranking rows [name,weighted,median]. Round weighted to 4 decimals. Validate ties explicitly before SUBMIT."
+  },
+  {
+    "id": "v0_interval_union_and_gaps",
+    "task": "Given closed intervals [[1,4],[3,8],[10,12],[11,15],[18,20],[21,21]] within global range [0,25], compute merged coverage intervals, total covered length (integer points count), and uncovered gaps. Treat intervals as inclusive integer ranges. Return compact JSON with merged, covered_points, gaps. Use at least two execution iterations before SUBMIT."
+  },
+  {
+    "id": "v0_inventory_with_lead_time",
+    "task": "Simulate inventory for 14 days. Initial stock=35. Daily demand=[4,6,5,7,3,8,6,5,9,4,7,6,5,8]. Reorder policy: if end-of-day stock < 12, place order of 20 units arriving after lead_time=2 full days. Multiple open orders allowed. No backorders; unmet demand is lost and counts as stockout amount. Compute final_stock, total_lost_units, and stockout_days (1-indexed). Return compact JSON. Show intermediate day-by-day table before SUBMIT."
+  },
+  {
+    "id": "v0_grid_path_with_key_and_door",
+    "task": "Grid shortest path with one key/door mechanic. Grid rows: ['S..#...','.#.#.A.','..a#...','##.#.#.','...#..G']. S=start, G=goal, #=wall, a=key, A=door passable only after collecting key a. Moves are 4-directional. Compute shortest steps from S to G and one valid shortest path as sequence of coordinates. Return compact JSON with steps and path. Validate with BFS state=(r,c,has_key) and sanity-check path legality before SUBMIT."
+  },
+  {
+    "id": "v0_log_latency_percentiles",
+    "task": "Parse logs and compute per-service latency percentiles. Lines: ['svc=auth ms=31 code=200','svc=auth ms=48 code=200','svc=auth ms=120 code=500','svc=pay ms=77 code=200','svc=pay ms=210 code=502','svc=pay ms=95 code=200','svc=search ms=15 code=200','svc=search ms=19 code=200','svc=search ms=40 code=200','svc=search ms=65 code=429']. For each service compute count, error_rate (code>=500 OR code==429), p50_ms, p95_ms using nearest-rank method. Return compact JSON keyed by service. Use two-stage computation before SUBMIT."
+  },
+  {
+    "id": "v0_dependency_critical_path",
+    "task": "Project DAG critical path. Tasks with duration: {'A':3,'B':2,'C':4,'D':6,'E':3,'F':5,'G':2}. Dependencies: [('A','D'),('B','D'),('B','E'),('C','E'),('D','F'),('E','F'),('F','G')]. Compute earliest start/finish for each task and total project duration (critical path length). Return compact JSON with project_duration and earliest_finish mapping. Perform topological validation and timing computation in separate steps before SUBMIT."
+  },
+  {
+    "id": "v0_knapsack_and_opt_count",
+    "task": "0/1 knapsack with tie counting. Capacity=15. Items [{'id':'i1','w':4,'v':7},{'id':'i2','w':2,'v':4},{'id':'i3','w':6,'v':10},{'id':'i4','w':5,'v':8},{'id':'i5','w':3,'v':5},{'id':'i6','w':7,'v':11}]. Compute maximum value and number of distinct item subsets achieving that maximum value within capacity. Return compact JSON with max_value, optimal_subset_count, and one optimal_subset_ids sorted. Do DP then brute-force cross-check before SUBMIT."
+  },
+  {
+    "id": "v0_set_cover_greedy_vs_optimal",
+    "task": "Universe U={1,2,3,4,5,6,7,8,9}. Candidate sets: S1={1,2,3,4}, S2={3,4,5,6}, S3={6,7}, S4={7,8,9}, S5={2,5,8}, S6={1,9}. Compute greedy set cover sequence (pick max uncovered, tiebreak by lexicographic set name) and also exact minimum cover size via brute force. Return compact JSON with greedy_order, greedy_size, optimal_size. Show uncovered progression before SUBMIT."
+  },
+  {
+    "id": "v0_polynomial_interpolation_check",
+    "task": "Interpolate polynomial through points (0,1), (1,3), (2,9), (3,19). Determine polynomial coefficients in ascending powers and evaluate at x=4 and x=5. Return compact JSON with coeffs, p4, p5. Validate by re-evaluating original points and printing residuals before SUBMIT."
+  },
+  {
+    "id": "v0_markov_distribution_after_steps",
+    "task": "Markov chain with states [A,B,C]. Transition matrix rows from current state: A->[0.6,0.3,0.1], B->[0.2,0.5,0.3], C->[0.1,0.3,0.6]. Initial distribution [1,0,0]. Compute distribution after 12 steps and approximate stationary distribution by power iteration (or eigen check) to 6 decimals. Return compact JSON with dist_step_12 and stationary. Run at least two intermediate checks before SUBMIT."
+  }
+]

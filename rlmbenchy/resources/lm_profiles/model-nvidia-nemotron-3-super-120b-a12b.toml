@@ -1,0 +1,14 @@
+# Shared model profile: NVIDIA-hosted Nemotron 3 Super over the NIM API.
+#
+# Auth comes from `NVIDIA_API_KEY`. If your shell sources `~/.secrets`,
+# export it there.
+
+[lm]
+api_base = "https://integrate.api.nvidia.com/v1"
+model = "nvidia/nemotron-3-super-120b-a12b"
+api_key_env = "NVIDIA_API_KEY"
+
+[lm.request]
+temperature = 1.0
+top_p = 0.95
+chat_template_kwargs = { enable_thinking = true, force_nonempty_content = true }

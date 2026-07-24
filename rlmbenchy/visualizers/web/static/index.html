@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RLMBenchy Run Viewer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="title-wrap">
+          <h1>RLM Run Viewer</h1>
+          <p>Run &rarr; Steps &rarr; Calls</p>
+        </div>
+        <div class="topbar-controls">
+          <button id="refreshBtn">Refresh Runs</button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <div class="sidebar-head">
+            <h2>Recent Runs</h2>
+            <span id="runCount">0 runs</span>
+          </div>
+          <div id="runList" class="run-list"></div>
+        </aside>
+
+        <main class="main">
+          <div id="emptyState" class="empty">
+            <h2>Select a run</h2>
+            <p>Choose a recent run from the sidebar.</p>
+          </div>
+
+          <section id="summary" class="summary" hidden>
+            <article class="stat">
+              <div class="label">Status</div>
+              <div id="statStatus" class="value">-</div>
+            </article>
+            <article class="stat">
+              <div class="label">Tasks / Steps</div>
+              <div id="statTasks" class="value">-</div>
+            </article>
+            <article class="stat">
+              <div class="label">Tokens</div>
+              <div id="statTokens" class="value">-</div>
+            </article>
+            <article class="stat">
+              <div class="label">Elapsed</div>
+              <div id="statElapsed" class="value">-</div>
+            </article>
+          </section>
+
+          <section id="batchSection" class="section" hidden>
+            <div class="section-head">
+              <h2>Batch Summary</h2>
+              <span id="batchSectionMeta" class="section-meta">-</span>
+            </div>
+            <div id="batchMetrics" class="batch-metrics"></div>
+          </section>
+
+          <section id="stepSection" class="section" hidden>
+            <div class="section-head">
+              <h2>Steps</h2>
+              <span id="stepSectionMeta" class="section-meta">-</span>
+            </div>
+            <div id="stepRail" class="step-rail"></div>
+          </section>
+
+          <section id="narrativeSection" class="section" hidden>
+            <div class="section-head">
+              <h2 id="narrativeTitle">Step Detail</h2>
+            </div>
+            <div id="narrativeBody" class="narrative-body"></div>
+          </section>
+
+          <section id="callsSection" class="section" hidden>
+            <div class="section-head">
+              <h2 id="callsTitle">Calls</h2>
+              <span id="callsMeta" class="section-meta">-</span>
+            </div>
+            <div id="callsList" class="calls-list"></div>
+          </section>
+
+          <div id="footerNote" class="footer-note" hidden>
+            <span id="sourceInfo">-</span>
+            <span class="keys-hint">Arrow keys: step navigation</span>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

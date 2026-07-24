@@ -1,0 +1,7 @@
+# Smoke run: RLM pipeline on tasks_v0 (algorithmic tasks).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "tasks_v0"
+task_limit = 1

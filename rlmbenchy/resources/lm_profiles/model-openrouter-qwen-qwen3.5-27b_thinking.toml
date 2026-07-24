@@ -1,0 +1,18 @@
+# Shared model profile: OpenRouter qwen3.5-27b with thinking mode enabled.
+# Sampling follows Qwen's thinking-mode recipe:
+# https://github.com/QwenLM/Qwen3.5
+
+[lm]
+api_base = "https://openrouter.ai/api/v1"
+model = "openrouter/qwen/qwen3.5-27b"
+
+[lm.request]
+temperature = 0.6
+top_p = 0.95
+top_k = 20
+reasoning = { enabled = true }
+provider = { sort = "price" }
+
+[lm.supported_params]
+# OpenRouter metadata omits the top-level routing `provider` field.
+ignore = ["provider"]

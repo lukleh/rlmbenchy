@@ -1,0 +1,122 @@
+[
+  {
+    "task_id": "rl01_invoice_total_acme",
+    "category": "realistic_table_math",
+    "context": "invoice_id,customer,amount_usd\nINV-001,ACME,120.50\nINV-002,BETA,99.00\nINV-003,ACME,45.00\nINV-004,ACME,34.50\nINV-005,GAMMA,88.00",
+    "query": "Please compute the total billed amount in USD for customer ACME from the ledger in context, and return just that numeric result."
+  },
+  {
+    "task_id": "rl02_net_revenue_after_refunds",
+    "category": "realistic_table_math",
+    "context": "type,order_id,amount\nsale,1001,250\nsale,1002,140\nrefund,1002,40\nsale,1003,90\nrefund,1001,25",
+    "query": "Using the transactions in context, calculate net revenue (sum of sales minus refunds)."
+  },
+  {
+    "task_id": "rl03_unique_users_single_day",
+    "category": "realistic_log_analysis",
+    "context": "2026-02-14T09:01:00Z user=u01 action=login\n2026-02-14T09:05:00Z user=u02 action=login\n2026-02-14T10:10:00Z user=u01 action=view\n2026-02-14T10:12:00Z user=u03 action=login\n2026-02-15T08:00:00Z user=u04 action=login",
+    "query": "How many distinct users appear on 2026-02-14 in these logs?"
+  },
+  {
+    "task_id": "rl04_top_product_by_units",
+    "category": "realistic_json_aggregation",
+    "context": "[{\"sku\":\"A12\",\"units\":14},{\"sku\":\"B55\",\"units\":7},{\"sku\":\"C77\",\"units\":19},{\"sku\":\"A12\",\"units\":6}]",
+    "query": "From the context data, aggregate units per SKU and return the SKU with the highest total units sold."
+  },
+  {
+    "task_id": "rl05_latency_p90",
+    "category": "realistic_metrics",
+    "context": "latencies_ms = [120, 98, 130, 150, 101, 111, 175, 143, 160, 99]",
+    "query": "Please compute the 90th percentile latency from the values in context using Python."
+  },
+  {
+    "task_id": "rl06_http_error_rate_percent",
+    "category": "realistic_log_analysis",
+    "context": "status_codes = [200, 200, 500, 200, 404, 200, 503, 200, 200, 200]",
+    "query": "Compute HTTP error rate as a percentage, where errors are status >= 400. Return the percentage with one decimal place."
+  },
+  {
+    "task_id": "rl07_interval_overlap_minutes",
+    "category": "realistic_time_math",
+    "context": "window_a = ('09:10', '10:25')\nwindow_b = ('09:55', '11:00')",
+    "query": "Using the two time windows in context, compute how many minutes they overlap."
+  },
+  {
+    "task_id": "rl08_word_frequency_excluding_stopwords",
+    "category": "realistic_text_processing",
+    "context": "text = 'stable systems need clear contracts and clear ownership'\nstopwords = {'and', 'need'}",
+    "query": "Count word frequencies in the context text excluding stopwords, then return the most frequent word. If there is a tie, return the alphabetically first one."
+  },
+  {
+    "task_id": "rl09_email_domain_histogram",
+    "category": "realistic_text_processing",
+    "context": "contacts = 'ana@acme.com, bob@beta.io, eve@acme.com, tom@gamma.dev, mia@beta.io'",
+    "query": "Build a domain frequency table from the emails in context and return the domain with the highest count."
+  },
+  {
+    "task_id": "rl10_nested_json_lookup",
+    "category": "realistic_json_navigation",
+    "context": "payload = {\"region\":\"us-east\",\"services\":[{\"name\":\"api\",\"p95\":210},{\"name\":\"worker\",\"p95\":340},{\"name\":\"db\",\"p95\":180}]}",
+    "query": "From the context payload, return the p95 latency for the service named 'worker'."
+  },
+  {
+    "task_id": "rl11_inventory_reorder_list",
+    "category": "realistic_business_rule",
+    "context": "inventory = [{\"sku\":\"A\",\"on_hand\":4,\"reorder_point\":5},{\"sku\":\"B\",\"on_hand\":9,\"reorder_point\":6},{\"sku\":\"C\",\"on_hand\":2,\"reorder_point\":3}]",
+    "query": "Identify which SKUs are below reorder point in context and return them as a comma-separated string sorted alphabetically."
+  },
+  {
+    "task_id": "rl12_currency_conversion_total_usd",
+    "category": "realistic_finance_math",
+    "context": "orders = [{\"currency\":\"EUR\",\"amount\":120},{\"currency\":\"USD\",\"amount\":80},{\"currency\":\"JPY\",\"amount\":10000}]\nrates_to_usd = {\"EUR\":1.1,\"USD\":1.0,\"JPY\":0.0068}",
+    "query": "Convert all order amounts in context to USD using the provided rates and return the total USD amount rounded to two decimals."
+  },
+  {
+    "task_id": "rl13_duration_between_timestamps",
+    "category": "realistic_time_math",
+    "context": "start = '2026-02-20T14:03:00Z'\nend = '2026-02-20T16:41:00Z'",
+    "query": "Compute the duration between start and end in minutes from context."
+  },
+  {
+    "task_id": "rl14_ab_test_winner",
+    "category": "realistic_metrics",
+    "context": "variant_a = {\"visitors\": 1200, \"conversions\": 96}\nvariant_b = {\"visitors\": 1150, \"conversions\": 109}",
+    "query": "Using conversion rate from context, determine which variant performed better and return only 'A' or 'B'."
+  },
+  {
+    "task_id": "rl15_group_average_best_team",
+    "category": "realistic_table_math",
+    "context": "team,score\nred,78\nblue,81\nred,88\nblue,79\ngreen,91\ngreen,84",
+    "query": "Compute the average score per team from context and return the team with the highest average."
+  },
+  {
+    "task_id": "rl16_markdown_table_sum",
+    "category": "realistic_text_table",
+    "context": "| item | qty | price |\n| ---- | --- | ----- |\n| pen  | 3   | 2.5   |\n| pad  | 2   | 4.0   |\n| mug  | 1   | 7.5   |",
+    "query": "Read the markdown table in context and compute the total order value as sum(qty * price)."
+  },
+  {
+    "task_id": "rl17_semicolon_record_filter",
+    "category": "realistic_text_processing",
+    "context": "records = 'id=1;status=ok;ms=90 | id=2;status=fail;ms=120 | id=3;status=ok;ms=105 | id=4;status=ok;ms=87'",
+    "query": "From context, keep only status=ok records and return the average ms rounded to one decimal."
+  },
+  {
+    "task_id": "rl18_rank_top_two_customers",
+    "category": "realistic_json_aggregation",
+    "context": "orders = [{\"customer\":\"Ana\",\"amount\":40},{\"customer\":\"Bob\",\"amount\":55},{\"customer\":\"Ana\",\"amount\":35},{\"customer\":\"Eli\",\"amount\":60},{\"customer\":\"Bob\",\"amount\":15}]",
+    "query": "Aggregate spend by customer from context and return the top two customer names in descending spend joined by ' > '."
+  },
+  {
+    "task_id": "rl19_detect_duplicate_order_ids",
+    "category": "realistic_data_quality",
+    "context": "order_ids = ['A100', 'A101', 'A102', 'A101', 'A103', 'A102', 'A104']",
+    "query": "Identify duplicate order IDs in context and return them as a sorted comma-separated list."
+  },
+  {
+    "task_id": "rl20_longest_streak_success",
+    "category": "realistic_sequence_analysis",
+    "context": "events = ['ok', 'ok', 'fail', 'ok', 'ok', 'ok', 'fail', 'ok']",
+    "query": "Find the longest consecutive streak of 'ok' events from context and return the streak length."
+  }
+]

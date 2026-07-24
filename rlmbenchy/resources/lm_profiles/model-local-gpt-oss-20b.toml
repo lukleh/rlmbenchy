@@ -1,0 +1,15 @@
+# Shared model profile for local llama.cpp gpt-oss-20b.
+# Temperature follows OpenAI's recommendation for gpt-oss:
+# https://github.com/openai/gpt-oss
+
+[lm]
+api_base = "http://127.0.0.1:8001/v1"
+model = "gpt-oss-20b"
+
+[lm.request]
+temperature = 1.0
+top_p = 1.0
+max_tokens = 1024
+# llama.cpp server parses <think>...</think> into message.reasoning_content
+# when this is set; DSPy's dspy.Reasoning adapter consumes that field.
+reasoning_format = "deepseek"

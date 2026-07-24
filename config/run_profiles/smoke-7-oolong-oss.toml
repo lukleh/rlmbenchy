@@ -1,0 +1,11 @@
+# Smoke run: RLM pipeline on oolong (HF dataset, synthetic long-context classification).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# Needs internet access to load oolongbench/oolong-synth from Hugging Face.
+# Anonymous access works; set HF_TOKEN if your environment requires auth.
+# See rlmbenchy/datahub/workloads/oolong/setup.md.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "oolong"
+task_limit = 1

@@ -1,0 +1,19 @@
+{
+  "venvPath": ".",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "include": [
+    "rlmbenchy",
+    "datahub",
+    "tests"
+  ],
+  "exclude": [
+    ".venv",
+    "**/__pycache__",
+    "build",
+    "dist",
+    "outputs",
+    "node_modules"
+  ],
+  "typeCheckingMode": "basic"
+}

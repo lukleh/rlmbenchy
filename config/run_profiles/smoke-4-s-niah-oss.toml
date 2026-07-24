@@ -1,0 +1,9 @@
+# Smoke run: RLM pipeline on s_niah (synthetic needle-in-a-haystack, in-memory).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# No external dependencies — the task is generated fresh from seed/haystack_lines/needle_key.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "s_niah"
+task_limit = 1

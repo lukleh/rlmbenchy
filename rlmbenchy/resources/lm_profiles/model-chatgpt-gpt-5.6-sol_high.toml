@@ -1,0 +1,14 @@
+# Experimental direct Codex Responses profile for ChatGPT subscription gpt-5.6-sol.
+# Reads a current token from file-backed Codex auth without refreshing or writing it.
+# Leave `api_key` unset; see the bundled LM profile README for setup and limitations.
+
+[lm]
+api_base = "https://chatgpt.com/backend-api/codex"
+model = "chatgpt/gpt-5.6-sol"
+transport = "chatgpt_responses"
+
+[lm.request]
+reasoning = { effort = "high" }
+
+[lm.supported_params]
+mode = "off"

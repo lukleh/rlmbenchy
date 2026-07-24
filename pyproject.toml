@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rlmbenchy"
+version = "0.1.0"
+description = "DSPy RLM runtime and benchmark workbench"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12,<3.14"
+authors = [{ name = "Lukas Lehner" }]
+keywords = ["dspy", "llm", "recursive-language-models", "research"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "dspy==3.2.1",
+    "python-dotenv>=1.0.1",
+    "rich>=13.9.0",
+    "datasets>=3.0.0",
+    "litellm==1.86.1",
+]
+
+[project.urls]
+Repository = "https://github.com/lukleh/rlmbenchy"
+Issues = "https://github.com/lukleh/rlmbenchy/issues"
+Documentation = "https://github.com/lukleh/rlmbenchy/tree/main/docs"
+
+[project.scripts]
+rlmbenchy = "rlmbenchy:main"
+
+[dependency-groups]
+dev = [
+    "jsonschema>=4.23.0",
+    "pytest>=8.0.0",
+    "ruff>=0.15.9",
+    "ty>=0.0.28",
+    "vulture>=2.16",
+]
+
+[tool.uv]
+prerelease = "if-necessary-or-explicit"
+
+[tool.setuptools.packages.find]
+include = ["rlmbenchy*"]
+
+[tool.setuptools.package-data]
+"rlmbenchy.resources" = ["lm_profiles/*.md", "lm_profiles/*.toml"]
+"rlmbenchy.datahub.workloads.check_adapter_matrix" = ["tasks.json"]
+"rlmbenchy.datahub.workloads.check_contract" = ["tasks.json"]
+"rlmbenchy.datahub.workloads.tasks_v0" = ["tasks.json"]
+"rlmbenchy.visualizers.web" = ["static/*.css", "static/*.html", "static/*.js"]
+
+[tool.pytest.ini_options]
+addopts = "-m 'not live_llm'"
+testpaths = ["tests"]
+markers = [
+    "live_llm: hits real LLM endpoints (OpenRouter, ChatGPT, etc.) and real REPL runtime. COSTS REAL MONEY. Excluded by default; opt in with `pytest -m live_llm`.",
+]
+filterwarnings = [
+    # DSPy 3.2.x emits this from its own avatar modules during `import dspy`.
+    # Keep the filter narrow so dependency-owned deprecation noise does not hide
+    # live profile progress, while warnings from our code still stay visible.
+    "ignore:The 'prefix' argument in InputField/OutputField is deprecated and has no effect in DSPy\\.:DeprecationWarning:dspy\\..*",
+    # LiteLLM emits this from its service logger after successful sync
+    # calls when no asyncio loop is registered. It is dependency-owned noise,
+    # and live profile output is more useful without a warning footer per call.
+    "ignore:There is no current event loop:DeprecationWarning:litellm\\._service_logger",
+]
+
+[tool.vulture]
+paths = ["rlmbenchy", "tests"]
+exclude = [".venv", "venv", "build", "dist", "node_modules", "__pycache__", "site-packages"]
+ignore_decorators = ["@*.tool*", "@pytest.fixture", "@field_validator", "@model_validator", "@validator"]
+ignore_names = ["model_config", "pytest_*"]
+min_confidence = 80
+
+[tool.ty.src]
+include = ["rlmbenchy"]
+
+[tool.ruff]
+target-version = "py312"

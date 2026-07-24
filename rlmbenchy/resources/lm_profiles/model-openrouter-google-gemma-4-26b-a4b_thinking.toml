@@ -1,0 +1,20 @@
+# Shared model profile: OpenRouter gemma-4-26b-a4b (26B total / 4B active MoE) with thinking enabled.
+# Sampling defaults per Google's Gemma 4 Best Practices.
+# OpenRouter exposes Gemma's thinking mode via the top-level `reasoning` param;
+# Gemma 4 emits reasoning inside `<|channel>thought\n…<channel|>` tags, which
+# OpenRouter parses into `message.reasoning`.
+
+[lm]
+api_base = "https://openrouter.ai/api/v1"
+model = "openrouter/google/gemma-4-26b-a4b-it"
+
+[lm.request]
+temperature = 1.0
+top_p = 0.95
+top_k = 65
+reasoning = { enabled = true }
+provider = { sort = "price" }
+
+[lm.supported_params]
+# OpenRouter metadata also omits the top-level routing `provider` field.
+ignore = ["provider"]

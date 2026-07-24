@@ -1,0 +1,13 @@
+# Smoke run: RLM pipeline on check_adapter_matrix with NVIDIA Gemma 3 27B IT.
+#
+# This is a minimal endpoint smoke: one checked-in deterministic task, no
+# sub-model, and local REPL execution to avoid a Docker dependency.
+
+lm_profile = "model-nvidia-google-gemma-3-27b-it"
+workload = "check_adapter_matrix"
+task_limit = 1
+max_iterations = 5
+max_llm_calls = 10
+
+[repl]
+backend = "local"

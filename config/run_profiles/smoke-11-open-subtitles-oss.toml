@@ -1,0 +1,14 @@
+# Smoke run: RLM pipeline on open_subtitles (OPUS translation pairs).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# Needs internet access on first run to download and cache the OPUS en-hi archive
+# under the runtime cache dir (`uv run python -m rlmbenchy paths` to inspect).
+# Subsequent runs are offline. See rlmbenchy/datahub/workloads/open_subtitles/setup.md.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "open_subtitles"
+task_limit = 1
+
+[workload_options]
+max_rows = 1

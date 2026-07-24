@@ -1,0 +1,15 @@
+# Smoke run: RLM pipeline on transcripts (local hashed-transcript corpus).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# Requires a transcript root and a tasks.json selector. Either configure
+# ~/.config/lukleh/rlmbenchy/transcripts.toml (see rlmbenchy/datahub/workloads/transcripts/setup.md)
+# or add explicit paths here, for example:
+#
+# [workload_options]
+# root = "/abs/path/to/transcripts"
+# tasks_path = "/abs/path/to/tasks.json"
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "transcripts"
+task_limit = 1

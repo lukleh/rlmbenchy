@@ -1,0 +1,16 @@
+# Shared model profile: OpenRouter gpt-oss-20b with deepseek reasoning format.
+
+[lm]
+api_base = "https://openrouter.ai/api/v1"
+model = "openrouter/openai/gpt-oss-20b"
+
+[lm.request]
+temperature = 1.0
+top_p = 1.0
+reasoning_effort = "high"
+include_reasoning = true
+provider = { sort = "price" }
+
+[lm.supported_params]
+# OpenRouter metadata omits the top-level routing `provider` field.
+ignore = ["provider"]

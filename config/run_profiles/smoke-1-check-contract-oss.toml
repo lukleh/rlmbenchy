@@ -1,0 +1,7 @@
+# Smoke run: RLM pipeline end-to-end on the contract-check workload.
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "check_contract"
+task_limit = 1

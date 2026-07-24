@@ -1,0 +1,15 @@
+# Smoke run: RLM pipeline on longbench_codeqa (HF dataset filtered to Code repo QA).
+# Main = gpt-oss-120b, sub = gpt-oss-20b, both via OpenRouter at high reasoning effort.
+#
+# Needs internet access to load zai-org/LongBench-v2 from Hugging Face.
+# The loader default max_rows=50 is too small to hit a CodeQA row — raise it here.
+# Anonymous access works; set HF_TOKEN if your environment requires auth.
+# See rlmbenchy/datahub/workloads/longbench_codeqa/setup.md.
+
+lm_profile = "model-openrouter-openai-gpt-oss-120b_high"
+sub_lm_profile = "model-openrouter-openai-gpt-oss-20b_high"
+workload = "longbench_codeqa"
+task_limit = 1
+
+[workload_options]
+max_rows = 300

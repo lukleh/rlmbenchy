@@ -1,0 +1,72 @@
+[
+  {
+    "task_id": "arith_01",
+    "query": "Compute 17 + 26. Return only the number.",
+    "expected": {"kind": "exact", "value": "43"}
+  },
+  {
+    "task_id": "alpha_01",
+    "query": "Which word comes first alphabetically: pear, apple, banana? Return only the word.",
+    "expected": {"kind": "exact", "value": "apple"}
+  },
+  {
+    "task_id": "count_01",
+    "query": "Count the vowels in the word 'banana'. Return only the number.",
+    "expected": {"kind": "exact", "value": "3"}
+  },
+  {
+    "task_id": "reverse_01",
+    "query": "Reverse the string 'stressed'. Return only the reversed string.",
+    "expected": {"kind": "exact", "value": "desserts"}
+  },
+  {
+    "task_id": "palindrome_01",
+    "query": "Is 'level' a palindrome? Return only yes or no.",
+    "expected": {"kind": "one_of", "options": ["yes", "Yes"]}
+  },
+  {
+    "task_id": "sort_01",
+    "query": "Sort these integers ascending and return them comma-separated with no spaces: 9,1,4,1.",
+    "expected": {"kind": "exact", "value": "1,1,4,9"}
+  },
+  {
+    "task_id": "geo_01",
+    "query": "What is the capital of France? Return only the city name.",
+    "expected": {"kind": "exact", "value": "Paris"}
+  },
+  {
+    "task_id": "upper_01",
+    "query": "Convert the word 'prague' to uppercase. Return only the transformed word.",
+    "expected": {"kind": "exact", "value": "PRAGUE"}
+  },
+  {
+    "task_id": "letters_01",
+    "query": "How many distinct letters are in the word 'letter'? Return only the number.",
+    "expected": {"kind": "exact", "value": "4"}
+  },
+  {
+    "task_id": "token_01",
+    "query": "Return exactly this token: SAFE_MODE_ENABLED",
+    "expected": {"kind": "exact", "value": "SAFE_MODE_ENABLED"}
+  },
+  {
+    "task_id": "weekday_01",
+    "query": "If today is Wednesday, what day is two days later? Return only the weekday.",
+    "expected": {"kind": "exact", "value": "Friday"}
+  },
+  {
+    "task_id": "compare_01",
+    "query": "Which is larger: 0.7 or 2/3? Return only the larger value exactly as written in the question.",
+    "expected": {"kind": "exact", "value": "0.7"}
+  },
+  {
+    "task_id": "total_01",
+    "query": "A box contains 2 red balls and 3 blue balls. How many balls are there in total? Return only the number.",
+    "expected": {"kind": "exact", "value": "5"}
+  },
+  {
+    "task_id": "lookup_01",
+    "query": "Read this mapping and return the value for key beta: {alpha: 1, beta: 7, gamma: 3}. Return only the value.",
+    "expected": {"kind": "exact", "value": "7"}
+  }
+]
