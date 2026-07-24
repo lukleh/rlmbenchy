@@ -8,7 +8,12 @@ from urllib.error import HTTPError
 from urllib.request import urlopen
 
 from otel_fixture_support import to_otel_fixture_records
-from rlmbenchy.visualizers.web.server import _build_handler
+from rlmbenchy.visualizers.web.server import (
+    DEFAULT_RUN_INDEX_LIMIT,
+    MAX_RUN_INDEX_LIMIT,
+    _build_handler,
+    _parse_run_index_limit,
+)
 
 
 def _write_jsonl(path: Path, entries: list[dict]) -> None:
@@ -144,6 +149,57 @@ def test_server_exposes_health_runs_and_run_payload(tmp_path: Path) -> None:
         assert payload["batch_summary"] is None
         assert payload["tasks"][0]["task_id"] == "t1"
         assert payload["tasks"][0]["steps"][0]["observed"] == "ok"
+    finally:
+        server.shutdown()
+        thread.join(timeout=5)
+        server.server_close()
+
+
+def test_parse_run_index_limit_clamps_and_rejects_non_integers() -> None:
+    assert _parse_run_index_limit([]) == DEFAULT_RUN_INDEX_LIMIT
+    assert _parse_run_index_limit([""]) == DEFAULT_RUN_INDEX_LIMIT
+    assert _parse_run_index_limit(["5"]) == 5
+    assert _parse_run_index_limit([" 5 "]) == 5
+    assert _parse_run_index_limit(["0"]) == 1
+    assert _parse_run_index_limit(["-5"]) == 1
+    assert _parse_run_index_limit(["99999999999999999999"]) == MAX_RUN_INDEX_LIMIT
+
+    for raw in ("abc", "1.5", "0x10", "nan"):
+        try:
+            _parse_run_index_limit([raw])
+        except ValueError as exc:
+            assert "Invalid limit" in str(exc)
+        else:
+            raise AssertionError(f"expected ValueError for {raw!r}")
+
+
+def test_server_returns_400_for_invalid_limit(tmp_path: Path) -> None:
+    static_dir = (
+        Path(__file__).resolve().parents[1]
+        / "rlmbenchy"
+        / "visualizers"
+        / "web"
+        / "static"
+    )
+    log_dir = tmp_path / "logs"
+    log_dir.mkdir()
+
+    server = ThreadingHTTPServer(("127.0.0.1", 0), _build_handler(static_dir, log_dir))
+    thread = threading.Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+
+    base_url = f"http://127.0.0.1:{server.server_port}"
+    try:
+        try:
+            with urlopen(f"{base_url}/api/runs?limit=abc"):
+                raise AssertionError("expected 400")
+        except HTTPError as exc:
+            assert exc.code == 400
+            assert "Invalid limit" in json.load(exc)["error"]
+
+        # The server survives the bad request and still serves valid ones.
+        with urlopen(f"{base_url}/api/runs?limit=5") as response:
+            assert json.load(response)["runs"] == []
     finally:
         server.shutdown()
         thread.join(timeout=5)

@@ -18,6 +18,25 @@ from rlmbenchy.runtime_paths import resolve_runtime_paths
 DEFAULT_STATIC_DIR = resource_path("rlmbenchy.visualizers.web", "static")
 DEFAULT_LOG_DIR = resolve_runtime_paths().rlm_log_dir
 
+DEFAULT_RUN_INDEX_LIMIT = 25
+MAX_RUN_INDEX_LIMIT = 500
+
+
+def _parse_run_index_limit(raw_values: list[str]) -> int:
+    """Parse the ``limit`` query parameter, clamped to a sane range.
+
+    Raises ``ValueError`` for non-integer input so the handler can answer with
+    a 400 instead of letting the request thread die on an unhandled exception.
+    """
+    raw = str(raw_values[0]).strip() if raw_values else ""
+    if not raw:
+        return DEFAULT_RUN_INDEX_LIMIT
+    try:
+        limit = int(raw)
+    except ValueError:
+        raise ValueError(f"Invalid limit: {raw!r}. Expected an integer.") from None
+    return max(1, min(limit, MAX_RUN_INDEX_LIMIT))
+
 
 def _resolve_file_name(root: Path, raw_name: str, expected_suffix: str) -> Path:
     name = Path(raw_name).name
@@ -65,11 +84,15 @@ def _build_handler(
 
             if parsed.path == "/api/runs":
                 query = parse_qs(parsed.query)
-                limit = int(query.get("limit", ["25"])[0])
+                try:
+                    limit = _parse_run_index_limit(query.get("limit", []))
+                except ValueError as exc:
+                    self._write_json({"error": str(exc)}, status=HTTPStatus.BAD_REQUEST)
+                    return
                 payload = {
                     "runs": build_run_index(
                         log_dir,
-                        limit=max(1, limit),
+                        limit=limit,
                     ),
                     "log_dir": str(log_dir),
                 }

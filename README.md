@@ -28,9 +28,10 @@ cd rlmbenchy
 uv sync --frozen --dev
 ```
 
-From a built wheel:
+From a built wheel (`dist/` is not checked in, so build it first):
 
 ```bash
+uv build
 uv tool install ./dist/rlmbenchy-*.whl
 rlmbenchy workloads list
 ```
