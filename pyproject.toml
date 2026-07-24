@@ -39,7 +39,7 @@ rlmbenchy = "rlmbenchy:main"
 dev = [
     "jsonschema>=4.23.0",
     "pytest>=8.0.0",
-    "ruff>=0.15.9",
+    "ruff>=0.16.0",
     "ty>=0.0.28",
     "vulture>=2.16",
 ]
