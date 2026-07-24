@@ -13,6 +13,9 @@ def test_rlm_public_api_exposes_runtime_surface_only() -> None:
     assert runtime_api.TaskRunResult.__name__ == "TaskRunResult"
     assert callable(runtime_api.run_task)
     assert callable(runtime_api.build_task_signature)
+    assert callable(runtime_api.load_lm_profile)
+    assert callable(runtime_api.resolve_lm_profile_path)
+    assert callable(runtime_api.validate_supported_parameters_for_openrouter)
     assert runtime_api.LocalProcessReplRuntime.__name__ == "LocalProcessReplRuntime"
 
     for name in (
@@ -21,7 +24,6 @@ def test_rlm_public_api_exposes_runtime_surface_only() -> None:
         "DEFAULT_WORKLOAD",
         "WorkbenchConfig",
         "load_config",
-        "resolve_lm_profile_path",
         "run_task_with_config",
         "run_task_from_config",
         "validate_supported_parameters",

@@ -9,6 +9,7 @@ __all__ = [
     "DEFAULT_SIGNATURE_ID",
     "DockerReplRuntime",
     "LMLoggingCallback",
+    "LMProfile",
     "LocalProcessReplRuntime",
     "LoopRunResult",
     "RLM",
@@ -26,16 +27,20 @@ __all__ = [
     "build_task_signature",
     "extract_final_answer",
     "is_retryable_tool_error",
+    "load_lm_profile",
     "loop_result_summary",
     "normalize_adapter_mode",
     "resolve_model_api_key",
+    "resolve_lm_profile_path",
     "run_task",
+    "validate_supported_parameters_for_openrouter",
 ]
 
 _MODULE_BY_NAME = {
     "ChatGPTResponsesLM": "rlmbenchy.rlm.lm",
     "build_lm": "rlmbenchy.rlm.lm",
     "resolve_model_api_key": "rlmbenchy.rlm.lm",
+    "validate_supported_parameters_for_openrouter": "rlmbenchy.lm_config",
     "DockerReplRuntime": "rlmbenchy.rlm.repl",
     "LocalProcessReplRuntime": "rlmbenchy.rlm.repl",
     "ReplExecutionTimeoutError": "rlmbenchy.rlm.repl",
@@ -58,6 +63,9 @@ _MODULE_BY_NAME = {
     "RLMRunConfig": "rlmbenchy.rlm.types",
     "StopReason": "rlmbenchy.rlm.types",
     "TaskRunResult": "rlmbenchy.rlm.types",
+    "LMProfile": "rlmbenchy.workbench.config",
+    "load_lm_profile": "rlmbenchy.workbench.config",
+    "resolve_lm_profile_path": "rlmbenchy.workbench.config",
 }
 
 

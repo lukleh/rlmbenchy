@@ -58,6 +58,8 @@ from rlmbenchy.rlm import (
     RLMRunConfig,
     SignatureFieldSpec,
     build_task_signature,
+    load_lm_profile,
+    resolve_lm_profile_path,
     run_task,
 )
 
@@ -88,6 +90,11 @@ task_run, _logger = run_task(
 
 print(task_run.final_outputs["answer"])
 ```
+
+Applications should keep domain-specific signatures, tools, clients, and task
+context in the application repository. `rlmbenchy.rlm` supplies the generic RLM
+runtime plus LM profile loading; it does not need to import or register the
+application.
 
 ## Execution, Costs, and Data
 
