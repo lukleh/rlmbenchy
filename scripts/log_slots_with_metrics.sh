@@ -12,7 +12,7 @@ URL="http://127.0.0.1:8001/slots"
 DISPLAY_INTERVAL="1"
 SCAN_INTERVAL="0.2"
 WINDOW_SAMPLES=30
-LOG_DIR="/mnt/data/lukas/llm_metrics"
+LOG_DIR="${LOG_DIR:-${XDG_STATE_HOME:-${HOME}/.local/state}/lukleh/rlmbenchy/llm_metrics}"
 
 usage() {
     cat <<'EOF'
@@ -23,7 +23,7 @@ Options:
   -n DISPLAY_INTERVAL Print/log interval in seconds (default: 1)
   -s SCAN_INTERVAL    Poll interval in seconds (default: 0.2)
   -w WINDOW_SAMPLES   Sliding window size in generated scan-slots (default: 30)
-  -d LOG_DIR          Log directory (default: /mnt/data/lukas/llm_metrics)
+  -d LOG_DIR          Log directory (default: $LOG_DIR env var, else ~/.local/state/lukleh/rlmbenchy/llm_metrics)
   -h                  Show this help
 EOF
 }
