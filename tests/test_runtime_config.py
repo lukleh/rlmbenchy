@@ -20,7 +20,7 @@ from rlmbenchy.workbench.config import (
 def test_load_project_env_discovers_dotenv_from_cwd(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
-    import rlmbenchy.runtime_config as runtime_config
+    from rlmbenchy import runtime_config
 
     (tmp_path / ".env").write_text(
         "RLMBENCHY_TEST_DOTENV=loaded-from-cwd\n", encoding="utf-8"
@@ -418,7 +418,7 @@ def test_load_runtime_toml_user_file_fully_replaces_bundled(
 ) -> None:
     # The user override must replace the bundled profile entirely —
     # bundled keys not present in the user file must NOT carry over.
-    import rlmbenchy.runtime_config as runtime_config
+    from rlmbenchy import runtime_config
 
     bundled_root = tmp_path / "bundled" / "lm_profiles"
     user_root = tmp_path / "user" / "lm_profiles"
@@ -457,7 +457,7 @@ def test_load_runtime_toml_user_file_fully_replaces_bundled(
 def test_load_runtime_toml_uses_bundled_when_no_user_override(
     monkeypatch: pytest.MonkeyPatch, tmp_path: Path
 ) -> None:
-    import rlmbenchy.runtime_config as runtime_config
+    from rlmbenchy import runtime_config
 
     bundled_root = tmp_path / "bundled" / "lm_profiles"
     user_root = tmp_path / "user" / "lm_profiles"

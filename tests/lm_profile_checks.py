@@ -23,7 +23,6 @@ from rlmbenchy.runtime_config import (
 )
 from rlmbenchy.workbench.config import LMProfile, load_lm_profile
 
-
 PROFILE_PATHS = tuple(sorted(BUNDLED_LM_PROFILES_DIR.glob("*.toml")))
 PROFILE_PARAMS = [pytest.param(path, id=path.stem) for path in PROFILE_PATHS]
 SMOKE_PROMPT = "Reply with exactly this text and no extra words: rlmbenchy-ok"

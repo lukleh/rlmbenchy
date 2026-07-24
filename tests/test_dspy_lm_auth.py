@@ -74,7 +74,7 @@ transport = "chatgpt_responses"
     assert config.lm_transport == "chatgpt_responses"
 
 
-def test_resolve_model_api_key_from_named_env(monkeypatch):  # noqa: ANN001
+def test_resolve_model_api_key_from_named_env(monkeypatch):
     monkeypatch.setenv("CHATGPT_TEST_KEY", "test-value")
 
     resolved = resolve_model_api_key(
@@ -138,7 +138,7 @@ def test_resolve_model_api_key_from_codex_auth(monkeypatch, tmp_path: Path) -> N
 def test_build_lm_uses_codex_headers_for_chatgpt(monkeypatch) -> None:
     captured: dict[str, object] = {}
 
-    def _fake_lm(model: str, **kwargs):  # noqa: ANN003, ANN201
+    def _fake_lm(model: str, **kwargs):
         captured["model"] = model
         captured.update(kwargs)
         return SimpleNamespace(model=model, kwargs=kwargs)
@@ -279,7 +279,7 @@ def test_chatgpt_responses_lm_suppresses_known_pydantic_usage_warning(
         def __init__(self) -> None:
             self.completed_response = SimpleNamespace(response={"id": "resp_123"})
 
-        def __iter__(self):  # noqa: ANN201
+        def __iter__(self):
             warnings.warn_explicit(
                 (
                     "Pydantic serializer warnings:\n"
@@ -292,7 +292,7 @@ def test_chatgpt_responses_lm_suppresses_known_pydantic_usage_warning(
             )
             return iter(())
 
-    def _fake_build_chatgpt_responses_request(**kwargs):  # noqa: ANN003, ANN201
+    def _fake_build_chatgpt_responses_request(**kwargs):
         captured["request_model"] = kwargs["model"]
         return SimpleNamespace(
             input=[{"role": "user", "content": "hi"}],
@@ -353,7 +353,7 @@ def test_chatgpt_responses_lm_maps_context_window_error(
         ),
     )
 
-    def _raise_context_window(**kwargs):  # noqa: ANN003, ANN202
+    def _raise_context_window(**kwargs):
         raise LitellmContextWindowExceededError(
             "too long",
             model=kwargs["model"],

@@ -57,7 +57,7 @@ def _build_handler(
             self.end_headers()
             self.wfile.write(encoded)
 
-        def do_GET(self) -> None:  # noqa: N802
+        def do_GET(self) -> None:
             parsed = urlparse(self.path)
             if parsed.path == "/api/health":
                 self._write_json({"ok": True})

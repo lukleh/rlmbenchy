@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=77", "wheel"]
+requires = ["setuptools>=83.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -24,7 +24,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "rich>=13.9.0",
     "datasets>=3.0.0",
-    "litellm==1.86.1",
+    "litellm==1.93.0",
 ]
 
 [project.urls]
@@ -86,3 +86,11 @@ include = ["rlmbenchy"]
 
 [tool.ruff]
 target-version = "py312"
+
+[tool.ruff.lint]
+ignore = [
+    "BLE001", # broad excepts are deliberate in runtime hardening paths
+    "TRY004", # switching ValueError to TypeError would change public behavior
+    "S110",   # try-except-pass is intentional in best-effort cleanup
+    "S112",   # try-except-continue is intentional in best-effort scanning
+]

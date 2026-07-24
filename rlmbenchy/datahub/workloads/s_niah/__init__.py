@@ -4,13 +4,9 @@ from typing import Any
 
 import dspy
 
-from rlmbenchy.datahub.workloads.support.task_filters import (
-    apply_task_filters,
-    filter_payload_by_tasks,
-)
-from rlmbenchy.datahub.workloads.support.task_selection import (
-    assert_unique_task_ids,
-    normalize_task_id_filter,
+from rlmbenchy.datahub.types import (
+    WorkloadBundle,
+    WorkloadTask,
 )
 from rlmbenchy.datahub.workloads.s_niah.source import (
     DEFAULT_HAYSTACK_LINES,
@@ -19,9 +15,13 @@ from rlmbenchy.datahub.workloads.s_niah.source import (
     build_s_niah_synthetic_task,
 )
 from rlmbenchy.datahub.workloads.s_niah.tools import build_tools
-from rlmbenchy.datahub.types import (
-    WorkloadBundle,
-    WorkloadTask,
+from rlmbenchy.datahub.workloads.support.task_filters import (
+    apply_task_filters,
+    filter_payload_by_tasks,
+)
+from rlmbenchy.datahub.workloads.support.task_selection import (
+    assert_unique_task_ids,
+    normalize_task_id_filter,
 )
 
 WORKLOAD_NAME = "s_niah"

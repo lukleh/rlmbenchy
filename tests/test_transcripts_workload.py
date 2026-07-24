@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from rlmbenchy.datahub.workloads.transcripts import load_workload
 from rlmbenchy.datahub.workloads.support.active_task import active_task
+from rlmbenchy.datahub.workloads.transcripts import load_workload
 
 
 def _write_transcript(root: Path, hash_id: str, segments: list[str]) -> None:

@@ -6,8 +6,8 @@ import pytest
 
 from rlmbenchy.datahub.workloads import longcot as workload_module
 from rlmbenchy.datahub.workloads.longcot import (
-    LongCoTSignature,
     WORKLOAD_NAME,
+    LongCoTSignature,
     load_workload,
 )
 from rlmbenchy.datahub.workloads.longcot import source as longcot_source

@@ -62,8 +62,6 @@ def install_reasoning_native_allowlist_override() -> None:
         return original(signature, field_name, lm, lm_kwargs)
 
     setattr(_patched_adapt_to_native_lm_feature, _PATCH_ATTR, True)
-    setattr(
-        DspyReasoning,
-        "adapt_to_native_lm_feature",
-        classmethod(_patched_adapt_to_native_lm_feature),
+    DspyReasoning.adapt_to_native_lm_feature = classmethod(  # ty: ignore[invalid-assignment]
+        _patched_adapt_to_native_lm_feature
     )

@@ -9,7 +9,7 @@ from otel_fixture_support import to_otel_fixture_records
 from rlmbenchy.cli import main
 
 
-def _write_log(path, entries) -> None:  # noqa: ANN001, ANN201
+def _write_log(path, entries) -> None:
     lines = [
         json.dumps(entry, ensure_ascii=False)
         for entry in to_otel_fixture_records(entries)
@@ -17,7 +17,7 @@ def _write_log(path, entries) -> None:  # noqa: ANN001, ANN201
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def test_logs_stats_json_output(tmp_path, capsys) -> None:  # noqa: ANN001
+def test_logs_stats_json_output(tmp_path, capsys) -> None:
     log_path = tmp_path / "stats.jsonl"
     _write_log(
         log_path,
@@ -58,7 +58,7 @@ def test_logs_stats_json_output(tmp_path, capsys) -> None:  # noqa: ANN001
     assert payload["status_counts"]["PASS"] == 1
 
 
-def test_logs_latest_prints_path(tmp_path, capsys) -> None:  # noqa: ANN001
+def test_logs_latest_prints_path(tmp_path, capsys) -> None:
     first = tmp_path / "rlm_a.jsonl"
     second = tmp_path / "rlm_b.jsonl"
     _write_log(first, [{"event_type": "run.started", "run_id": "run_a"}])
@@ -74,6 +74,6 @@ def test_logs_latest_prints_path(tmp_path, capsys) -> None:  # noqa: ANN001
     assert Path(out).name in {"rlm_a.jsonl", "rlm_b.jsonl"}
 
 
-def test_logs_latest_raises_when_missing(tmp_path) -> None:  # noqa: ANN001
+def test_logs_latest_raises_when_missing(tmp_path) -> None:
     with pytest.raises(SystemExit):
         main(["logs", "latest", "--log-dir", str(tmp_path)])

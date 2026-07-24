@@ -129,8 +129,8 @@ def load_workload_tasks(
 
 __all__ = [
     "DEFAULT_TASKS_PATH",
-    "load_task_rows",
     "load_check_adapter_matrix_tasks",
+    "load_task_rows",
     "load_workload_tasks",
     "resolve_tasks_path",
     "row_to_workload_task",

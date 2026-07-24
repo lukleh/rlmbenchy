@@ -1,9 +1,11 @@
 from __future__ import annotations
 
-import rlmbenchy.datahub.workloads.longbench_codeqa as longbench_codeqa
-import rlmbenchy.datahub.workloads.oolong as oolong
-import rlmbenchy.datahub.workloads.oolong_pairs as oolong_pairs
-import rlmbenchy.datahub.workloads.open_subtitles as open_subtitles
+from rlmbenchy.datahub.workloads import (
+    longbench_codeqa,
+    oolong,
+    oolong_pairs,
+    open_subtitles,
+)
 
 
 def test_oolong_loader_normalizes_missing_metadata_to_dict(monkeypatch) -> None:

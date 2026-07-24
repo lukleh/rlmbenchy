@@ -8,7 +8,6 @@ from tests.lm_profile_checks import (
     load_bundled_profile,
 )
 
-
 MODEL_VARIANTS = ("sol", "terra", "luna")
 REASONING_EFFORTS = ("low", "medium", "high", "xhigh", "max")
 PROFILE_CASES = [

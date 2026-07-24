@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 
 from otel_fixture_support import to_otel_fixture_records
-import rlmbenchy.logger as logger
+from rlmbenchy import logger
 from rlmbenchy.logger.api import (
     build_run_index,
     find_latest_log_file,

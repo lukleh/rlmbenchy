@@ -7,7 +7,6 @@ import pytest
 
 from rlmbenchy.rlm.signatures import SignatureFieldSpec, build_task_signature
 
-
 PickleRoundTripTaskSignature = build_task_signature(
     name="PickleRoundTripTaskSignature",
     instructions="Return the answer.",

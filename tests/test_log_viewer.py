@@ -51,7 +51,7 @@ def test_describe_run_falls_back_to_model_stem_when_names_missing() -> None:
     assert label == "gpt-oss-20b+tasks_v0"
 
 
-def _write_log(path, entries) -> None:  # noqa: ANN001, ANN201
+def _write_log(path, entries) -> None:
     lines = [
         json.dumps(entry, ensure_ascii=False)
         for entry in to_otel_fixture_records(entries)
@@ -59,7 +59,7 @@ def _write_log(path, entries) -> None:  # noqa: ANN001, ANN201
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def test_log_viewer_stats_and_tree_use_otel_records(tmp_path) -> None:  # noqa: ANN001
+def test_log_viewer_stats_and_tree_use_otel_records(tmp_path) -> None:
     log_path = tmp_path / "rlm_2026-03-07_12-00-00_run1.jsonl"
     _write_log(
         log_path,
@@ -186,7 +186,7 @@ def test_log_viewer_stats_and_tree_use_otel_records(tmp_path) -> None:  # noqa: 
     assert tree["runs"][0]["steps"][0]["code_block_count"] == 2
 
 
-def test_log_viewer_resolves_explicit_and_latest_log_paths(tmp_path) -> None:  # noqa: ANN001
+def test_log_viewer_resolves_explicit_and_latest_log_paths(tmp_path) -> None:
     log_path = tmp_path / "rlm_current.jsonl"
     _write_log(
         log_path,
@@ -244,7 +244,7 @@ def test_log_viewer_latest_ignores_non_rlm_jsonl_files(tmp_path: Path) -> None:
     assert resolve_log_file(log_file=None, log_dir=tmp_path) == log_path
 
 
-def test_log_viewer_show_only_failures_and_latest(tmp_path) -> None:  # noqa: ANN001
+def test_log_viewer_show_only_failures_and_latest(tmp_path) -> None:
     log_a = tmp_path / "rlm_a.jsonl"
     log_b = tmp_path / "rlm_b.jsonl"
     _write_log(
@@ -402,7 +402,7 @@ def test_log_viewer_show_only_failures_and_latest(tmp_path) -> None:  # noqa: AN
     assert "run_finished" in kinds
 
 
-def test_log_viewer_show_uses_step_index(tmp_path) -> None:  # noqa: ANN001
+def test_log_viewer_show_uses_step_index(tmp_path) -> None:
     log_path = tmp_path / "rlm_2026-03-07_12-00-00_run1.jsonl"
     _write_log(
         log_path,
@@ -493,7 +493,7 @@ def test_log_viewer_show_uses_step_index(tmp_path) -> None:  # noqa: ANN001
     assert "iteration=3" in format_show_text(payload)
 
 
-def test_log_viewer_show_failure_rows_include_execution_details(tmp_path) -> None:  # noqa: ANN001
+def test_log_viewer_show_failure_rows_include_execution_details(tmp_path) -> None:
     log_path = tmp_path / "rlm_2026-03-07_12-00-00_runotel.jsonl"
     _write_log(
         log_path,

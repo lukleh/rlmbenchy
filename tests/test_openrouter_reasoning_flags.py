@@ -31,7 +31,6 @@ import pytest
 from rlmbenchy.rlm.lm import build_lm
 from rlmbenchy.runtime_config import resolve_openrouter_api_key
 
-
 API_BASE = "https://openrouter.ai/api/v1"
 MODEL = "openrouter/openai/gpt-oss-20b"
 TILING_PROBLEM = (

@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from rlmbenchy import _litellm_bootstrap as _litellm_bootstrap  # noqa: F401
-
 from typing import TYPE_CHECKING, Any
 
-if TYPE_CHECKING:
-    from rlmbenchy.rlm import RLM
-    from rlmbenchy.logger import RLMLogger, VerbosePrinter
+from rlmbenchy import _litellm_bootstrap as _litellm_bootstrap
 
-__all__ = ["main", "RLM", "RLMLogger", "VerbosePrinter"]
+if TYPE_CHECKING:
+    from rlmbenchy.logger import RLMLogger, VerbosePrinter
+    from rlmbenchy.rlm import RLM
+
+__all__ = ["RLM", "RLMLogger", "VerbosePrinter", "main"]
 
 
 def __getattr__(name: str) -> Any:

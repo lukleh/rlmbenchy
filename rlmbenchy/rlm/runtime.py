@@ -14,16 +14,28 @@ from dspy.utils.callback import ACTIVE_CALL_ID, BaseCallback
 
 from rlmbenchy.rlm._response_extraction import (
     coerce_count as _coerce_count,
+)
+from rlmbenchy.rlm._response_extraction import (
     event_prompt_chars as _event_prompt_chars,
+)
+from rlmbenchy.rlm._response_extraction import (
     extract_cost,
     extract_finish_reason,
     extract_message,
     extract_preview,
     extract_reasoning,
     extract_usage,
+)
+from rlmbenchy.rlm._response_extraction import (
     history_entry_for_logged_call as _history_entry_for_logged_call,
+)
+from rlmbenchy.rlm._response_extraction import (
     redact_sensitive as _redact_sensitive,
+)
+from rlmbenchy.rlm._response_extraction import (
     response_to_dict as _response_to_dict,
+)
+from rlmbenchy.rlm._response_extraction import (
     safe_optional_int as _safe_optional_int,
 )
 
@@ -539,11 +551,11 @@ class LMLoggingCallback(BaseCallback):
 
 
 __all__ = [
-    "LMLoggingCallback",
     "DEFAULT_SIGNATURE_ID",
     "RLM_MAX_ITERATIONS",
     "RLM_MAX_LLM_CALLS",
     "VALID_ADAPTER_MODES",
+    "LMLoggingCallback",
     "build_adapter",
     "normalize_adapter_mode",
 ]

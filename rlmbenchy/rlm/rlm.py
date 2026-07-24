@@ -17,17 +17,17 @@ This module has no knowledge of loggers, event streams, or console output.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import inspect
 import json
 import keyword
 import re
 import time
+from dataclasses import dataclass
 from typing import Any, Protocol, runtime_checkable
 
 import dspy
-from dspy import Signature, Tool
 import pydantic
+from dspy import Signature, Tool
 from dspy.adapters.utils import parse_value, serialize_for_json, translate_field_type
 from dspy.primitives.code_interpreter import (
     CodeInterpreter,
@@ -38,8 +38,8 @@ from dspy.primitives.repl_types import REPLHistory
 from dspy.utils.exceptions import AdapterParseError
 
 from rlmbenchy.rlm.reasoning import install_reasoning_native_allowlist_override
-from rlmbenchy.rlm.signatures import RESERVED_RLM_PREDICTION_FIELDS
 from rlmbenchy.rlm.repl import ReplRuntimeError
+from rlmbenchy.rlm.signatures import RESERVED_RLM_PREDICTION_FIELDS
 from rlmbenchy.rlm.types import StopReason
 
 _PYTHON_FENCE_LANGS = {"python", "py", "python3", "py3", ""}
@@ -191,7 +191,7 @@ def _make_repl_callable(tool_name: str, tool: Tool) -> Any:
         return tool(**kwargs)
 
     if sig is not None:
-        setattr(_wrapped, "__signature__", sig)
+        _wrapped.__signature__ = sig  # ty: ignore[unresolved-attribute]
     return _wrapped
 
 
@@ -360,7 +360,7 @@ class RLM(dspy.Module):
 
     def _build_signatures(self) -> tuple[type[Signature], type[Signature]]:
         final_output_signature = ", ".join(
-            f"{name}=..." for name in self.signature.output_fields.keys()
+            f"{name}=..." for name in self.signature.output_fields
         )
         output_fields_desc = "\n".join(
             f"- {translate_field_type(name, field)}"
@@ -1044,9 +1044,9 @@ class RLM(dspy.Module):
 __all__ = [
     "ACTION_INSTRUCTIONS_TEMPLATE",
     "EXTRACT_INSTRUCTIONS",
+    "LLM_QUERY_PROMPT_CHAR_LIMIT",
     "RLM",
     "RLMRunTelemetry",
-    "LLM_QUERY_PROMPT_CHAR_LIMIT",
     "StepObserver",
     "_normalize_optional_text",
     "_strip_code_fences",

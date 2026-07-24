@@ -34,7 +34,8 @@ import subprocess
 import sys
 from collections.abc import Callable
 from pathlib import Path
-from typing import Any, TypeGuard
+from types import TracebackType
+from typing import Any, Self, TypeGuard
 
 from dspy.primitives.code_interpreter import CodeInterpreterError, FinalOutput
 
@@ -224,12 +225,17 @@ class _BaseProcessReplRuntime:
         self._tools_registered = False
         self.process = None
 
-    def __enter__(self) -> _BaseProcessReplRuntime:
+    def __enter__(self) -> Self:
         """Context manager support: start on enter."""
         self.start()
         return self
 
-    def __exit__(self, _exc_type: Any, _exc: Any, _tb: Any) -> None:
+    def __exit__(
+        self,
+        _exc_type: type[BaseException] | None,
+        _exc: BaseException | None,
+        _tb: TracebackType | None,
+    ) -> None:
         """Context manager support: always stop on exit."""
         self.shutdown()
 
@@ -377,7 +383,7 @@ class _BaseProcessReplRuntime:
 
         prelude: str | None = None
         if variables:
-            assignments = [f"{k} = {repr(v)}" for k, v in variables.items()]
+            assignments = [f"{k} = {v!r}" for k, v in variables.items()]
             prelude = "\n".join(assignments)
 
         self._request_id += 1

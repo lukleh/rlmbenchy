@@ -1,12 +1,9 @@
 """Shared task-filter helpers for workload loaders."""
 
 from collections.abc import Mapping, Sequence
-from typing import TypeVar
 
 from rlmbenchy.datahub.types import WorkloadTask
 from rlmbenchy.datahub.workloads.support.task_selection import normalize_task_id_filter
-
-PayloadT = TypeVar("PayloadT")
 
 
 def apply_task_filters(
@@ -24,7 +21,7 @@ def apply_task_filters(
     return filtered
 
 
-def filter_payload_by_tasks(
+def filter_payload_by_tasks[PayloadT](
     payload_by_task_id: Mapping[str, PayloadT],
     tasks: Sequence[WorkloadTask],
 ) -> dict[str, PayloadT]:

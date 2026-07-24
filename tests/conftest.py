@@ -4,7 +4,6 @@ import sys
 
 import pytest
 
-
 _PYTEST_CONFIG: pytest.Config | None = None
 
 

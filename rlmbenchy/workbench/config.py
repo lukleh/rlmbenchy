@@ -77,7 +77,7 @@ def resolve_lm_profile_reference(
 
     if base_dir is not None:
         candidate = Path(text).expanduser()
-        if candidate.is_absolute() or text.startswith(".") or text.startswith("~"):
+        if candidate.is_absolute() or text.startswith((".", "~")):
             return resolve_path(text, base_dir)
         if text.endswith(".toml"):
             local_candidate = resolve_path(text, base_dir)
@@ -242,9 +242,9 @@ def load_bench_run_config(path: Path) -> BenchRunConfig:
 
 
 __all__ = [
-    "BenchRunConfig",
     "DEFAULT_CONFIG_DIR",
     "DEFAULT_LOG_DIR",
+    "BenchRunConfig",
     "LMProfile",
     "ReplSpec",
     "WorkloadSpec",

@@ -2,14 +2,13 @@
 
 from __future__ import annotations
 
-from collections.abc import Sequence
-from dataclasses import dataclass
 import keyword
 import sys
+from collections.abc import Sequence
+from dataclasses import dataclass
 from typing import Any
 
 import dspy
-
 
 RESERVED_RLM_PREDICTION_FIELDS = frozenset({"trajectory", "final_reasoning"})
 

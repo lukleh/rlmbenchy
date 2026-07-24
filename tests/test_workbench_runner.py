@@ -5,8 +5,8 @@ from pathlib import Path
 
 import dspy
 
-from rlmbenchy.datahub.types import WorkloadBundle, WorkloadTask
 import rlmbenchy.workbench.runner as runner_module
+from rlmbenchy.datahub.types import WorkloadBundle, WorkloadTask
 from rlmbenchy.logger.otel import domain_events_from_otel_records
 from rlmbenchy.rlm.repl import DockerReplRuntime, LocalProcessReplRuntime
 from rlmbenchy.workbench.config import ReplSpec

@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from collections import Counter, defaultdict
 import json
 import math
+from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -68,8 +68,8 @@ def _percentile(values: list[int], percentile: float) -> float:
         return float(values[0])
     sorted_values = sorted(values)
     rank = (percentile / 100.0) * (len(sorted_values) - 1)
-    lower = int(math.floor(rank))
-    upper = int(math.ceil(rank))
+    lower = math.floor(rank)
+    upper = math.ceil(rank)
     if lower == upper:
         return float(sorted_values[lower])
     ratio = rank - lower
@@ -900,8 +900,7 @@ def normalize_run(log_path: Path) -> dict[str, Any]:
 
     all_steps: list[dict[str, Any]] = []
     for task in tasks:
-        for step in task.get("steps") or []:
-            all_steps.append(step)
+        all_steps.extend(task.get("steps") or [])
 
     return {
         "run_id": str(run_started.get("run_id") or run_finished.get("run_id") or ""),

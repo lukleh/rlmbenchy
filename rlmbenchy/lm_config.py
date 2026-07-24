@@ -267,7 +267,7 @@ def fetch_openrouter_supported_parameters(model: str) -> set[str] | None:
             headers={"User-Agent": "rlmbenchy/1.0"},
         )
         try:
-            with urllib.request.urlopen(req, timeout=30) as response:  # noqa: S310
+            with urllib.request.urlopen(req, timeout=30) as response:
                 payload = json.loads(response.read().decode("utf-8"))
         except (urllib.error.URLError, TimeoutError, json.JSONDecodeError):
             return None

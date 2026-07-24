@@ -8,47 +8,69 @@ from rlmbenchy.datahub.types import WorkloadLoader
 def builtin_workload_loaders() -> dict[str, WorkloadLoader]:
     from rlmbenchy.datahub.workloads.browsecomp_plus import (
         WORKLOAD_NAME as BROWSECOMP_PLUS_NAME,
+    )
+    from rlmbenchy.datahub.workloads.browsecomp_plus import (
         load_workload as browsecomp_plus_load,
     )
     from rlmbenchy.datahub.workloads.check_adapter_matrix import (
         WORKLOAD_NAME as CHECK_ADAPTER_MATRIX_NAME,
+    )
+    from rlmbenchy.datahub.workloads.check_adapter_matrix import (
         load_workload as check_adapter_matrix_load,
     )
     from rlmbenchy.datahub.workloads.check_contract import (
         WORKLOAD_NAME as CHECK_CONTRACT_NAME,
-        load_workload as check_contract_load,
     )
-    from rlmbenchy.datahub.workloads.transcripts import (
-        WORKLOAD_NAME as TRANSCRIPTS_NAME,
-        load_workload as transcripts_load,
+    from rlmbenchy.datahub.workloads.check_contract import (
+        load_workload as check_contract_load,
     )
     from rlmbenchy.datahub.workloads.longbench_codeqa import (
         WORKLOAD_NAME as LONGBENCH_CODEQA_NAME,
+    )
+    from rlmbenchy.datahub.workloads.longbench_codeqa import (
         load_workload as longbench_codeqa_load,
     )
     from rlmbenchy.datahub.workloads.longcot import (
         WORKLOAD_NAME as LONGCOT_NAME,
+    )
+    from rlmbenchy.datahub.workloads.longcot import (
         load_workload as longcot_load,
     )
     from rlmbenchy.datahub.workloads.oolong import (
         WORKLOAD_NAME as OOLONG_NAME,
+    )
+    from rlmbenchy.datahub.workloads.oolong import (
         load_workload as oolong_load,
     )
     from rlmbenchy.datahub.workloads.oolong_pairs import (
         WORKLOAD_NAME as OOLONG_PAIRS_NAME,
+    )
+    from rlmbenchy.datahub.workloads.oolong_pairs import (
         load_workload as oolong_pairs_load,
     )
     from rlmbenchy.datahub.workloads.open_subtitles import (
         WORKLOAD_NAME as OPEN_SUBTITLES_NAME,
+    )
+    from rlmbenchy.datahub.workloads.open_subtitles import (
         load_workload as open_subtitles_load,
     )
     from rlmbenchy.datahub.workloads.s_niah import (
         WORKLOAD_NAME as S_NIAH_NAME,
+    )
+    from rlmbenchy.datahub.workloads.s_niah import (
         load_workload as s_niah_load,
     )
     from rlmbenchy.datahub.workloads.tasks_v0 import (
         WORKLOAD_NAME as TASKS_V0_NAME,
+    )
+    from rlmbenchy.datahub.workloads.tasks_v0 import (
         load_workload as tasks_v0_load,
+    )
+    from rlmbenchy.datahub.workloads.transcripts import (
+        WORKLOAD_NAME as TRANSCRIPTS_NAME,
+    )
+    from rlmbenchy.datahub.workloads.transcripts import (
+        load_workload as transcripts_load,
     )
 
     return {

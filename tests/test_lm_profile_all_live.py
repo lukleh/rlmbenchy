@@ -20,7 +20,6 @@ from tests.lm_profile_checks import (
     run_live_profile_smoke,
 )
 
-
 SPECIFIC_PROFILE_TEST_FILES = {
     "model-chatgpt-gpt-5.5_high.toml": "test_lm_profile_chatgpt_gpt_5_5_high.py",
     "model-chatgpt-gpt-5.5_low.toml": "test_lm_profile_chatgpt_gpt_5_5_low.py",

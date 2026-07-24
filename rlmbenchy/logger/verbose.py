@@ -15,7 +15,6 @@ from rich.text import Text
 
 from rlmbenchy.rlm.types import LoopRunResult, StopReason
 
-
 COLORS = {
     "primary": "#7AA2F7",
     "secondary": "#BB9AF7",

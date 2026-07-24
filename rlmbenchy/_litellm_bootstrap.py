@@ -87,11 +87,11 @@ def register_local_litellm_models() -> None:
         litellm_logger.disabled = previous_logger_disabled
 
     previous_suppress_debug_info = litellm.suppress_debug_info
-    setattr(litellm, "suppress_debug_info", True)
+    litellm.suppress_debug_info = True
     try:
         litellm.register_model(model_cost=_LOCAL_MODEL_COST_OVERLAY)
     finally:
-        setattr(litellm, "suppress_debug_info", previous_suppress_debug_info)
+        litellm.suppress_debug_info = previous_suppress_debug_info
 
 
 register_local_litellm_models()

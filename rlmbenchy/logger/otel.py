@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import calendar
 import hashlib
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 from urllib.parse import urlparse
 
@@ -27,11 +27,11 @@ def is_otel_record(record: dict[str, Any]) -> bool:
 
 
 def trace_id_for_run(run_id: str) -> str:
-    return hashlib.sha256(f"trace:{run_id}".encode("utf-8")).hexdigest()[:32]
+    return hashlib.sha256(f"trace:{run_id}".encode()).hexdigest()[:32]
 
 
 def span_id_for_key(run_id: str, key: str) -> str:
-    return hashlib.sha256(f"span:{run_id}:{key}".encode("utf-8")).hexdigest()[:16]
+    return hashlib.sha256(f"span:{run_id}:{key}".encode()).hexdigest()[:16]
 
 
 def otel_resource(
@@ -54,7 +54,7 @@ def otel_scope() -> dict[str, Any]:
 
 def timestamp_nanos(value: datetime | str | None) -> str:
     if value is None:
-        dt = datetime.now(timezone.utc)
+        dt = datetime.now(UTC)
     elif isinstance(value, datetime):
         dt = value
     else:
@@ -63,8 +63,8 @@ def timestamp_nanos(value: datetime | str | None) -> str:
             text = f"{text[:-1]}+00:00"
         dt = datetime.fromisoformat(text)
     if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
-    dt = dt.astimezone(timezone.utc)
+        dt = dt.replace(tzinfo=UTC)
+    dt = dt.astimezone(UTC)
     seconds = calendar.timegm(dt.timetuple())
     return str((seconds * 1_000_000_000) + (dt.microsecond * 1000))
 

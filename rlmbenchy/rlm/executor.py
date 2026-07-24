@@ -19,9 +19,9 @@ from rlmbenchy.rlm.repl import (
 )
 from rlmbenchy.rlm.rlm import RLM, RLMRunTelemetry
 from rlmbenchy.rlm.runtime import (
-    LMLoggingCallback,
     RLM_MAX_ITERATIONS,
     RLM_MAX_LLM_CALLS,
+    LMLoggingCallback,
     build_adapter,
 )
 from rlmbenchy.rlm.types import LoopRunResult, RLMRunConfig, StopReason, TaskRunResult

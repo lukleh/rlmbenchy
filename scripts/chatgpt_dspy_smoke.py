@@ -4,7 +4,6 @@ import argparse
 import sys
 
 import dspy
-
 from rlmbenchy.core.dspy.lm import build_lm
 from rlmbenchy.core.dspy.runtime import build_dspy_settings_adapter
 

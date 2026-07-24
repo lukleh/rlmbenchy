@@ -5,11 +5,9 @@ from __future__ import annotations
 import re
 from collections.abc import Iterable, Mapping, MutableMapping
 from dataclasses import dataclass
-from typing import Any, TypeVar
+from typing import Any
 
 from rlmbenchy.datahub.types import WorkloadTask
-
-PayloadT = TypeVar("PayloadT")
 
 
 @dataclass(frozen=True)
@@ -92,7 +90,7 @@ def assert_unique_task_payload_ids(
     )
 
 
-def put_unique_payload(
+def put_unique_payload[PayloadT](
     payloads: MutableMapping[str, PayloadT],
     task_id: str,
     payload: PayloadT,

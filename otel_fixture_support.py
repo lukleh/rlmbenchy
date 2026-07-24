@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from rlmbenchy.logger.otel import (
@@ -93,7 +93,7 @@ def _log_record_from_event(event: dict[str, Any]) -> dict[str, Any]:
 def to_otel_fixture_records(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
     converted: list[dict[str, Any]] = []
     current_run_id = "run_fixture"
-    base_ts = datetime(2026, 3, 7, 12, 0, 0, tzinfo=timezone.utc)
+    base_ts = datetime(2026, 3, 7, 12, 0, 0, tzinfo=UTC)
 
     for seq, raw in enumerate(entries, start=1):
         if "type" in raw or "event" in raw:

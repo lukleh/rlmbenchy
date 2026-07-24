@@ -4,14 +4,9 @@ from typing import Any
 
 import dspy
 
-from rlmbenchy.datahub.workloads.support.task_filters import (
-    apply_task_filters,
-    filter_payload_by_tasks,
-)
-from rlmbenchy.datahub.workloads.support.task_selection import (
-    assert_unique_task_ids,
-    normalize_task_id_filter,
-    put_unique_payload,
+from rlmbenchy.datahub.types import (
+    WorkloadBundle,
+    WorkloadTask,
 )
 from rlmbenchy.datahub.workloads.oolong.source import (
     DEFAULT_DATASET_ID,
@@ -20,9 +15,14 @@ from rlmbenchy.datahub.workloads.oolong.source import (
     iter_oolong_tasks,
 )
 from rlmbenchy.datahub.workloads.oolong.tools import build_tools
-from rlmbenchy.datahub.types import (
-    WorkloadBundle,
-    WorkloadTask,
+from rlmbenchy.datahub.workloads.support.task_filters import (
+    apply_task_filters,
+    filter_payload_by_tasks,
+)
+from rlmbenchy.datahub.workloads.support.task_selection import (
+    assert_unique_task_ids,
+    normalize_task_id_filter,
+    put_unique_payload,
 )
 
 WORKLOAD_NAME = "oolong"

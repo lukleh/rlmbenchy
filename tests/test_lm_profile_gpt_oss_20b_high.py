@@ -28,7 +28,6 @@ from rlmbenchy.runtime_config import (
 )
 from rlmbenchy.workbench.config import LMProfile, load_lm_profile
 
-
 PROFILE_PATH = BUNDLED_LM_PROFILES_DIR / "model-openrouter-openai-gpt-oss-20b_high.toml"
 
 TILING_PROBLEM = (

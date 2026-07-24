@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import UTC, datetime
 from typing import Any
 
 import dspy
@@ -103,7 +103,7 @@ class ChatGPTResponsesLM(dspy.LM):
                 "outputs": outputs,
                 "usage": history_usage,
                 "cost": cost,
-                "timestamp": datetime.now().isoformat(),
+                "timestamp": datetime.now(UTC).isoformat(),
                 "uuid": str(uuid.uuid4()),
                 "model": self.model,
                 "response_model": str(response.get("model") or "") or None,

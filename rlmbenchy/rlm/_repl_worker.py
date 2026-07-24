@@ -6,7 +6,7 @@ This module is NOT imported directly.  Its source is read as a string by
 Extracting it to a real ``.py`` file means it gets linting, IDE support, and
 readable tracebacks instead of living as a multi-hundred-line string literal.
 """
-# ruff: noqa: T201, S102 — print() is the intended transport; exec() is the core mechanism.
+# ruff: noqa: S102 — print() is the intended transport; exec() is the core mechanism.
 
 import contextlib
 import io
@@ -15,7 +15,6 @@ import keyword
 import linecache
 import sys
 import traceback
-
 
 # ── Transport ──────────────────────────────────────────────────────────────
 
@@ -125,7 +124,7 @@ def _install_submit(output_fields):
     signature = ", ".join(params)
     payload = ", ".join(result_fields)
     source = f"def SUBMIT(*, {signature}):\n    raise FinalOutput({{{payload}}})\n"
-    exec(source, namespace, namespace)  # noqa: S102
+    exec(source, namespace, namespace)
     globals()["SUBMIT"] = namespace["SUBMIT"]
 
 
@@ -344,10 +343,10 @@ while True:
                     prelude_filename = _prelude_filename(msg_id)
                     _cache_virtual_source(prelude_filename, prelude)
                     prelude_compiled = compile(prelude, prelude_filename, "exec")
-                    exec(prelude_compiled, globals(), globals())  # noqa: S102
+                    exec(prelude_compiled, globals(), globals())
                 _cache_virtual_source(snippet_filename, code)
                 compiled = compile(code, snippet_filename, "exec")
-                exec(compiled, globals(), globals())  # noqa: S102
+                exec(compiled, globals(), globals())
         except FinalOutput as fo:
             _send(_jsonrpc_result({"final": fo.value}, msg_id))
         except SyntaxError as se:

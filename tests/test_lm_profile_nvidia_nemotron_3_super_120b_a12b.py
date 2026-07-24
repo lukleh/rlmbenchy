@@ -25,7 +25,6 @@ from tests.lm_profile_checks import (
     live_call_deadline,
 )
 
-
 PROFILE_PATH = BUNDLED_LM_PROFILES_DIR / "model-nvidia-nemotron-3-super-120b-a12b.toml"
 
 
@@ -134,14 +133,16 @@ def test_live_profile_smoke_surfaces_answer_and_reasoning(
         )
 
     try:
-        with live_call_deadline(
-            LIVE_CALL_HARD_TIMEOUT_S,
-            f"live NVIDIA Nemotron profile smoke timed out after {LIVE_CALL_HARD_TIMEOUT_S}s",
+        with (
+            live_call_deadline(
+                LIVE_CALL_HARD_TIMEOUT_S,
+                f"live NVIDIA Nemotron profile smoke timed out after {LIVE_CALL_HARD_TIMEOUT_S}s",
+            ),
+            dspy.context(lm=lm),
         ):
-            with dspy.context(lm=lm):
-                pred = dspy.Predict(_AnswerSig)(
-                    question=question,
-                )
+            pred = dspy.Predict(_AnswerSig)(
+                question=question,
+            )
     except TimeoutError as exc:
         with capsys.disabled():
             print(f"[live_llm] fail: {exc}")

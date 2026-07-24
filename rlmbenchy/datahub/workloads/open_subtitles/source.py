@@ -48,8 +48,7 @@ def _parse_open_subtitles_config(config: str) -> tuple[str, str]:
 
 def _parse_open_subtitles_ref(value: str) -> tuple[int | None, int | None, int | None]:
     text = str(value or "").strip()
-    if text.endswith(".xml.gz"):
-        text = text[: -len(".xml.gz")]
+    text = text.removesuffix(".xml.gz")
     parts = text.split("/")
     if len(parts) != 4:
         return None, None, None

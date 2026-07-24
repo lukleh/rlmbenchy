@@ -9,12 +9,12 @@ from typing import Any, cast
 
 import dspy
 
-from rlmbenchy.datahub.workloads.transcripts.tools import build_tools
 from rlmbenchy.datahub.types import WorkloadBundle, WorkloadTask
 from rlmbenchy.datahub.workloads.support.task_selection import (
     assert_unique_task_ids,
     normalize_task_id_filter,
 )
+from rlmbenchy.datahub.workloads.transcripts.tools import build_tools
 from rlmbenchy.runtime_config import (
     default_transcripts_root,
     default_transcripts_tasks_path,

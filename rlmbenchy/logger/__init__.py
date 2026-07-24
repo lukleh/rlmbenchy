@@ -36,13 +36,22 @@ if TYPE_CHECKING:
     )
 
 __all__ = [
+    "DEFAULT_LOG_DIR",
     "RLMLogger",
     "VerbosePrinter",
     "build_run_index",
+    "build_show_payload",
+    "build_stats_payload",
+    "build_tree_payload",
+    "find_latest_log_file",
     "find_log_files",
+    "format_show_text",
+    "format_stats_text",
+    "format_tree_text",
     "load_latest_run",
     "load_run",
     "load_runs",
+    "resolve_log_file",
     "run_calls",
     "run_final_outputs",
     "run_steps",
@@ -51,15 +60,6 @@ __all__ = [
     "run_tasks",
     "summarize_latest_progress",
     "summarize_run_progress",
-    "DEFAULT_LOG_DIR",
-    "find_latest_log_file",
-    "resolve_log_file",
-    "build_stats_payload",
-    "build_tree_payload",
-    "build_show_payload",
-    "format_stats_text",
-    "format_tree_text",
-    "format_show_text",
 ]
 
 _API_EXPORTS = {

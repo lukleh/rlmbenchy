@@ -8,8 +8,9 @@ from __future__ import annotations
 
 from typing import Any
 
-from rlmbenchy.rlm.types import StopReason
 from dspy.primitives.code_interpreter import CodeInterpreter
+
+from rlmbenchy.rlm.types import StopReason
 
 
 class TestStopReason:

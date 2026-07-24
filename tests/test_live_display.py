@@ -7,6 +7,7 @@ from io import StringIO
 from typing import Any
 
 from rich.console import Console
+
 from rlmbenchy.logger.live_display import LiveStepDisplay
 
 _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")

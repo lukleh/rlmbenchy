@@ -6,7 +6,6 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-
 ORG_NAMESPACE = "lukleh"
 APP_NAME = "rlmbenchy"
 ENV_PREFIX = "RLMBENCHY"

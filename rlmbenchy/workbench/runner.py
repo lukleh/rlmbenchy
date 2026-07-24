@@ -10,19 +10,19 @@ from pathlib import Path
 from typing import Any
 
 import dspy
+
 from rlmbenchy.datahub.registry import load_workload
 from rlmbenchy.datahub.scoring import score_answer
 from rlmbenchy.datahub.types import WorkloadBundle, WorkloadTask
 from rlmbenchy.datahub.workloads.support.active_task import active_task
 from rlmbenchy.datahub.workloads.support.task_selection import normalize_task_id_filter
-
 from rlmbenchy.lm_config import validate_supported_parameters_for_openrouter
 from rlmbenchy.logger import RLMLogger, VerbosePrinter
 from rlmbenchy.logger.live_display import LiveStepDisplay
 from rlmbenchy.rlm import (
+    RLM,
     LMLoggingCallback,
     RLMRunConfig,
-    RLM,
     TaskRunResult,
     resolve_model_api_key,
     run_task,

@@ -267,8 +267,7 @@ def _draw_step_list(
         return
 
     visible = max(1, height - 2)
-    if state.step_index < state.step_list_scroll:
-        state.step_list_scroll = state.step_index
+    state.step_list_scroll = min(state.step_list_scroll, state.step_index)
     if state.step_index >= state.step_list_scroll + visible:
         state.step_list_scroll = state.step_index - visible + 1
 

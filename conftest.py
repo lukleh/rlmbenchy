@@ -11,4 +11,4 @@ repo-root ``conftest.py`` before test modules, so this is the right hook.
 
 from __future__ import annotations
 
-from rlmbenchy import _litellm_bootstrap as _litellm_bootstrap  # noqa: F401
+from rlmbenchy import _litellm_bootstrap  # noqa: F401

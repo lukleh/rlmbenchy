@@ -1,19 +1,20 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
 import subprocess
+from pathlib import Path
+from types import SimpleNamespace
 
 import dspy
 import pytest
 from dspy.adapters.types.reasoning import Reasoning as DspyReasoning
-from dspy.utils.exceptions import AdapterParseError
 from dspy.predict.rlm import RLM as OfficialRLM
 from dspy.primitives.code_interpreter import CodeInterpreterError, FinalOutput
 from dspy.primitives.repl_types import REPLHistory
 from dspy.utils.callback import BaseCallback
-from types import SimpleNamespace
+from dspy.utils.exceptions import AdapterParseError
 
+import rlmbenchy.rlm.rlm as dspy_rlm_module
 from rlmbenchy.logger import RLMLogger
 from rlmbenchy.rlm.executor import run_task
 from rlmbenchy.rlm.reasoning import install_reasoning_native_allowlist_override
@@ -22,7 +23,6 @@ from rlmbenchy.rlm.repl import (
     ReplExecutionTimeoutError,
     ReplRuntimeError,
 )
-import rlmbenchy.rlm.rlm as dspy_rlm_module
 from rlmbenchy.rlm.rlm import RLM, RLMRunTelemetry
 from rlmbenchy.rlm.types import RLMRunConfig, StopReason
 
@@ -956,7 +956,7 @@ def test_forward_handles_missing_code_field_without_crashing() -> None:
 
 def test_run_task_preserves_last_run_telemetry_when_rlm_raises(tmp_path) -> None:
     class _TelemetryFailingRLM:
-        def __init__(self, signature, **kwargs) -> None:  # noqa: ANN001, ANN003
+        def __init__(self, signature, **kwargs) -> None:
             del signature, kwargs
             self.last_run_telemetry: RLMRunTelemetry | None = None
 
@@ -1016,7 +1016,7 @@ def test_run_task_scopes_lm_and_adapter_settings(tmp_path) -> None:
     seen: dict[str, object | None] = {}
 
     class _SettingsInspectingRLM:
-        def __init__(self, signature, **kwargs) -> None:  # noqa: ANN001, ANN003
+        def __init__(self, signature, **kwargs) -> None:
             del signature, kwargs
             self.last_run_telemetry: RLMRunTelemetry | None = None
 

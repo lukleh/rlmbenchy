@@ -9,7 +9,6 @@ from tests.lm_profile_checks import (
     load_bundled_profile,
 )
 
-
 PROFILE_FILENAME = "model-openrouter-google-gemma-4-31b_thinking.toml"
 
 

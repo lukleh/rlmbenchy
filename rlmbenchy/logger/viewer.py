@@ -13,12 +13,12 @@ from pathlib import Path
 from typing import Any
 
 from rlmbenchy.logger.log_files import find_latest_log_file as _find_latest_log_file
+from rlmbenchy.logger.preview import snippet as _snippet
 from rlmbenchy.logger.projection import (
     _percentile,
     _safe_int,
     normalize_run,
 )
-from rlmbenchy.logger.preview import snippet as _snippet
 from rlmbenchy.runtime_paths import resolve_runtime_paths
 
 DEFAULT_LOG_DIR = resolve_runtime_paths().rlm_log_dir

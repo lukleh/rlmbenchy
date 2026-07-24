@@ -9,7 +9,6 @@ from tests.lm_profile_checks import (
     load_bundled_profile,
 )
 
-
 PROFILE_FILENAME = "model-openrouter-qwen-qwen3.5-35b-a3b_thinking.toml"
 
 

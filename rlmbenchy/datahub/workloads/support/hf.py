@@ -173,12 +173,12 @@ def iter_rows(
 
 
 __all__ = [
+    "HF_API_BASE",
+    "HF_DATASETS_SERVER_BASE",
+    "coerce_expected",
     "dataset_info",
     "datasets_server_rows",
     "datasets_server_splits",
-    "HF_DATASETS_SERVER_BASE",
-    "HF_API_BASE",
-    "coerce_expected",
     "get_json",
     "headers",
     "iter_rows",

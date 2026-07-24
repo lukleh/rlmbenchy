@@ -11,7 +11,7 @@ import json
 import os
 import uuid
 from collections.abc import Callable
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from types import ModuleType
 from typing import Any
@@ -30,7 +30,6 @@ from rlmbenchy.logger.otel import (
     trace_id_for_run,
 )
 from rlmbenchy.rlm._response_extraction import safe_optional_int as _safe_optional_int
-
 
 LOG_SCHEMA_NAME = OTEL_SCHEMA_NAME
 LOG_SCHEMA_VERSION = OTEL_SCHEMA_VERSION
@@ -100,7 +99,7 @@ class RLMLogger:
         self._run_id = str(uuid.uuid4())[:8]
         self._trace_id = trace_id_for_run(self._run_id)
         if self._save_to_disk and self.log_dir:
-            timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H-%M-%S")
+            timestamp = datetime.now(UTC).strftime("%Y-%m-%d_%H-%M-%S")
             self.log_file_path = os.path.join(
                 self.log_dir,
                 f"{self._file_name}_{timestamp}_{self._run_id}.jsonl",
@@ -120,7 +119,7 @@ class RLMLogger:
         return self._trace_id
 
     def _new_timestamp(self) -> datetime:
-        current = datetime.now(timezone.utc)
+        current = datetime.now(UTC)
         if self._started_at is None:
             self._started_at = current
         return current
@@ -129,7 +128,7 @@ class RLMLogger:
         if self._started_at is None:
             return 0
         elapsed_s = (timestamp - self._started_at).total_seconds()
-        return max(0, int(round(elapsed_s * 1000.0)))
+        return max(0, round(elapsed_s * 1000.0))
 
     def _next_record_index(self) -> int:
         self._record_count += 1
@@ -180,7 +179,7 @@ class RLMLogger:
             "summary",
         }
         unknown_keys = sorted(
-            str(key) for key in payload.keys() if str(key) not in allowed_keys
+            str(key) for key in payload if str(key) not in allowed_keys
         )
         if unknown_keys:
             raise ValueError(

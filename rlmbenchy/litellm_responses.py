@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any
 import warnings
+from typing import Any
 
 from rlmbenchy.rlm._response_extraction import response_to_dict
 
@@ -19,7 +19,7 @@ def _read_field(value: Any, field_name: str) -> Any:
 def _event_type_value(event: Any) -> str:
     raw_type = _read_field(event, "type")
     if hasattr(raw_type, "value"):
-        raw_type = getattr(raw_type, "value")
+        raw_type = raw_type.value
     return str(raw_type or "").strip()
 
 
@@ -83,8 +83,7 @@ def drain_litellm_responses_stream(stream: Any) -> dict[str, Any]:
             category=UserWarning,
             module=r"pydantic\.main",
         )
-        for event in stream:
-            events.append(event)
+        events.extend(stream)
 
     completed = _read_field(stream, "completed_response")
     response = _read_field(completed, "response")

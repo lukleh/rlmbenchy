@@ -26,7 +26,6 @@ from rlmbenchy.runtime_config import (
 )
 from rlmbenchy.workbench.config import load_lm_profile
 
-
 PROFILES_DIR = BUNDLED_LM_PROFILES_DIR
 
 TILING_PROBLEM = (
